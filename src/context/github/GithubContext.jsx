@@ -17,6 +17,7 @@ export const GithubProvider = ({children}) => {
     // sets the "isLoading" state to true
     const startLoading = () => dispatch({type: 'SET_LOADING'});
 
+    // Gets the initial users - only for testing
     const fetchUsers = async () => {
         startLoading();
         const response = await fetch(`${GH_URL}/users`, {

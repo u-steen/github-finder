@@ -1,15 +1,10 @@
-import {useEffect, useContext} from "react";
-import Spinner from "../layout/Spinner.jsx";
-import UserItem from "./UserItem.jsx";
-import GithubContext from "../../context/github/GithubContext.jsx";
+import {useContext} from 'react';
+import Spinner from '../layout/Spinner.jsx';
+import UserItem from './UserItem.jsx';
+import GithubContext from '../../context/github/GithubContext.jsx';
 
 function UserResults(){
-    const {isLoading, users, fetchUsers} = useContext(GithubContext)
-
-    useEffect(() => {
-        // fetchUsers()
-    }, [])
-
+    const {isLoading, users} = useContext(GithubContext);
 
     if(!isLoading) {
 
@@ -20,13 +15,13 @@ function UserResults(){
                 ))}
 
             </div>
-        )
+        );
     } else {
         return (
             <Spinner/>
-        )
+        );
     }
 
 }
 
-export default UserResults
+export default UserResults;
