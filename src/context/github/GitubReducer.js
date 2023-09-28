@@ -4,18 +4,25 @@ function GitubReducer(state, action){
             return {
                 ...state,
                 users: action.payload,
-                loading: false,
+                isLoading: false,
             };
         case 'SET_LOADING':
             return {
                 ...state,
-                loading: true,
+                isLoading: true,
             };
         case 'CLEAR':
             return {
                 ...state,
                 users: [],
             };
+        case 'GET_USER':
+            return {
+                ...state,
+                user: action.payload,
+                isLoading: false,
+            };
+
         default:
             return state;
     }
