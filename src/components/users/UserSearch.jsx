@@ -24,7 +24,8 @@ function UserSearch(){
                             <input type="text"
                                    className="w-full bg-gray-200 input input-lg text-black"
                                    value={text}
-                                   onChange={handleChange}/>
+                                   onChange={handleChange}
+                                   placeholder={'Search'}/>
                             <button type="submit"
                                     className="absolute right-0 top-0 rounded-l-none w-36 btn btn-lg">Search
                             </button>
