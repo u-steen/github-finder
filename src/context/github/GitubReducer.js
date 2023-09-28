@@ -1,20 +1,20 @@
 function GitubReducer(state, action){
     switch (action.type) {
-        case "GET_USERS":
+        case 'GET_USERS':
             return {
                 ...state,
                 users: action.payload,
                 loading: false,
-            }
-        case "SET_LOADING":
+            };
+        case 'SET_LOADING':
             return {
                 ...state,
                 loading: true,
-            }
+            };
         default:
-            return state
+            return state;
     }
 
 }
 
-export default GitubReducer
+export default GitubReducer;
