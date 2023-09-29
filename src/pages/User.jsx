@@ -1,17 +1,18 @@
 import {useContext, useEffect} from 'react';
 import {useParams, Link} from 'react-router-dom';
+import {FaCodepen, FaUserFriends, FaStore, FaUsers} from 'react-icons/fa';
 
 import GithubContext from '../context/github/GithubContext.jsx';
 import Spinner from '../components/layout/Spinner.jsx';
-
-import {FaCodepen, FaUserFriends, FaStore, FaUsers} from 'react-icons/fa';
-
+import RepoList from '../components/repos/RepoList.jsx';
 
 function User(){
-    const {user, searchUser, isLoading} = useContext(GithubContext);
+    const {user, searchUser, isLoading, repos, getUserRepos} = useContext(GithubContext);
+
     const params = useParams();
     useEffect(() => {
         searchUser(params.login);
+        getUserRepos(params.login);
     }, []);
 
     if(isLoading) {
@@ -147,8 +148,8 @@ function User(){
                             {public_gists}
                         </div>
                     </div>
-
                 </div>
+                <RepoList repos={repos}/>
             </div>
         </>
     );
