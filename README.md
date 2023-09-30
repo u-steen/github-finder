@@ -1,8 +1,12 @@
-# React + Vite
+# GitHub Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a small app that helps you search and find GitHub Profiles. It is part of the React Front to Back Course
 
-Currently, two official plugins are available:
+# About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Github finder is made primarly with `React`
+
+The styling(CSS) is made with TailwindCSS and DaisyUI
+
+# Demo - soon
+
