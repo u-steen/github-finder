@@ -3,6 +3,7 @@ import {createContext, useReducer} from 'react';
 import GithubReducer from './GitubReducer.js';
 
 const GithubContext = createContext();
+
 const GH_URL = import.meta.env.VITE_GITHUB_URL;
 const GH_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
@@ -68,11 +69,8 @@ export const GithubProvider = ({children}) => {
     };
 
     return (<GithubContext.Provider value={{
-        users: state.users,
-        isLoading: state.isLoading,
-        user: state.user,
-        repos: state.repos,
-        searchUsers,
+        ...state,
+        dispatch,
         clearUsers,
         searchUser,
         getUserRepos,
