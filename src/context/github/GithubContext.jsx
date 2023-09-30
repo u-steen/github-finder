@@ -19,25 +19,6 @@ export const GithubProvider = ({children}) => {
     // sets the "isLoading" state to true
     const startLoading = () => dispatch({type: 'SET_LOADING'});
 
-    const searchUsers = async (text) => {
-        startLoading();
-        const params = new URLSearchParams({
-            q: text,
-        });
-
-        const response = await fetch(`${GH_URL}/search/users?${params}`, {
-            headers: {
-                Authorization: `token ${GH_TOKEN}`,
-            },
-        });
-
-        const {items} = await response.json();
-        dispatch({
-            type: 'GET_USERS',
-            payload: items,
-        });
-    };
-
     const searchUser = async (login) => {
         startLoading();
 
