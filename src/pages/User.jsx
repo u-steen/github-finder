@@ -6,13 +6,33 @@ import GithubContext from '../context/github/GithubContext.jsx';
 import Spinner from '../components/layout/Spinner.jsx';
 import RepoList from '../components/repos/RepoList.jsx';
 
+import {searchUser, getUserRepos} from '../context/github/GithubActions.jsx';
+
 function User(){
-    const {user, searchUser, isLoading, repos, getUserRepos} = useContext(GithubContext);
+    const {user, isLoading, repos, dispatch} = useContext(GithubContext);
 
     const params = useParams();
     useEffect(() => {
-        searchUser(params.login);
-        getUserRepos(params.login);
+        dispatch({
+            type: 'SET_LOADING',
+        });
+
+        const getUserData = async () => {
+            const userData = await searchUser(params.login);
+            dispatch({
+                type: 'GET_USER',
+                payload: userData,
+            });
+
+            const userReposData = await getUserRepos(params.login);
+            dispatch({
+                type: 'GET_USER_REPOS',
+                payload: userReposData,
+            });
+        };
+
+        getUserData();
+
     }, []);
 
     if(isLoading) {

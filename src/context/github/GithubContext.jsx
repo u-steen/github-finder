@@ -4,9 +4,6 @@ import GithubReducer from './GitubReducer.js';
 
 const GithubContext = createContext();
 
-const GH_URL = import.meta.env.VITE_GITHUB_URL;
-const GH_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
-
 export const GithubProvider = ({children}) => {
     const initialState = {
         users: [],
@@ -17,63 +14,9 @@ export const GithubProvider = ({children}) => {
 
     const [state, dispatch] = useReducer(GithubReducer, initialState);
 
-    // sets the "isLoading" state to true
-    const startLoading = () => dispatch({type: 'SET_LOADING'});
-
-    const searchUser = async (login) => {
-        startLoading();
-
-        const response = await fetch(`${GH_URL}/users/${login}`, {
-            headers: {
-                Authorization: `token ${GH_TOKEN}`,
-            },
-        });
-
-        if(response.status === 404) {
-            window.location = '/notfound';
-        } else {
-            const data = await response.json();
-            dispatch({
-                type: 'GET_USER',
-                payload: data,
-            });
-        }
-    };
-
-    const clearUsers = () => {
-        dispatch({
-            type: 'CLEAR',
-        });
-    };
-
-    const getUserRepos = async (login) => {
-        startLoading();
-
-        const params = new URLSearchParams({
-            sort: 'created',
-            per_page: 10,
-        });
-
-        const response = await fetch(`${GH_URL}/users/${login}/repos?${params}`, {
-            headers: {
-                Authorization: `token ${GH_TOKEN}`,
-            },
-        });
-        const data = await response.json();
-
-        dispatch({
-            type: 'GET_USER_REPOS',
-            payload: data,
-        });
-
-    };
-
     return (<GithubContext.Provider value={{
         ...state,
         dispatch,
-        clearUsers,
-        searchUser,
-        getUserRepos,
     }}>{children}</GithubContext.Provider>);
 };
 

@@ -5,7 +5,7 @@ import {searchUsers} from '../../context/github/GithubActions.jsx';
 
 function UserSearch(){
     const [text, setText] = useState('');
-    const {users, dispatch, clearUsers} = useContext(GithubContext);
+    const {users, dispatch} = useContext(GithubContext);
     const {setAlert} = useContext(AlertContext);
     const handleChange = (e) => setText(e.target.value);
     const handleSubmit = async (e) => {
@@ -24,7 +24,9 @@ function UserSearch(){
             setText('');
         }
     };
-    const handleClear = () => clearUsers();
+    const handleClear = () => dispatch({
+        type: 'CLEAR',
+    });
     return (
         <div className="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 mb-6">
             <div>
