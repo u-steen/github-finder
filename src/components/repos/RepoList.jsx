@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import RepoItem from './RepoItem.jsx';
+
 function RepoList({repos}){
 
     return (
@@ -7,7 +9,7 @@ function RepoList({repos}){
             <div className="card-body">
                 <h1 className="text-3xl my-4 font-bold card-title">Latest Repositories</h1>
                 {repos.map((item) => {
-                    return (<h3 key={item.id}>{item.name}</h3>);
+                    return (<RepoItem key={item.id} repo={item}/>);
                 })}
             </div>
         </div>
